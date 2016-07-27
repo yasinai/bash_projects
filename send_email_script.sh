@@ -10,6 +10,5 @@ for dir in ${dirs};
 while read user size ; do
     name=`ypmatch "$user" passwd | awk -F\: '{print $5}' | sed -e "s/ /_/g" | tr '[:upper:]' '[:lower:]' `
     [ -z "$name" ] && error "failed to get ${user}'s name from nis"
-    echo $name $size 
-done
-~                                       
+    echo  ""$name"@$company"
+done                              
