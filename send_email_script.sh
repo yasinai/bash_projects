@@ -2,6 +2,7 @@
 echo "Email to custom size  ClearCase view users:"
 # SIZE variable taken from Jenkins environment. 
 #dirs="/ccview_cc2 /ccview_cc2n"
+company="dell.com"
 SIZE=10000
 dirs="/var /tmp"
 for dir in ${dirs};
