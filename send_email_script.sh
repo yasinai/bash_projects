@@ -13,6 +13,7 @@ while read user size ; do
     [ -z "$name" ] && error "failed to get ${user}'s name from nis"
 done
 )
-echo $recipient_list
+echo $recipient_list | sed -e "s/ /,/g"   #Email plugin have get format with commas
+
 
          
