@@ -1,18 +1,18 @@
 #! /bin/bash
 ESXPASSWD=""
 MOUNTNAME=$MOUNTNAME
-SHARENAME=$SHARENAME
+DSNAME=$DSNAME
 STORAGENAME=$STORAGENAME
 STARTSEQ=$STARTSEQ
 ENDSEQ=$ENDSEQ
 function MOUNT {
 
-ESXSCRIPT="esxcli storage nfs add -H fiona -s /scratch -v scratch"
+ESXSCRIPT="esxcli storage nfs add -H $STORAGENAME -s /$MOUNTNAME -v $DSNAME"
 }
 
 function UMOUNT {
 
-ESXSCRIPT="esxcli storage nfs remove --volume-name=scratch"
+ESXSCRIPT="esxcli storage nfs remove --volume-name=$DSNAME"
 }
 
 #remove storage "esxcli storage nfs remove --volume-name=scratch"
