@@ -17,10 +17,13 @@ local ESXSCRIPT='esxcli storage nfs remove --volume-name=$DS_NAME'
 echo $ESXSCRIPT
 }
 
+$mnt=$(MOUNT)
+$umnt=$(UMOUNT)
+
 $SEQUENCE=`seq $STARTSEQ $ENDSEQ `
 for i in $SEQUENCE;
 do
-expect -c "spawn ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null root@vmrack${i} $ESXSCRIPT; 
+expect -c "spawn ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null root@vmrack${i} $function; 
 set timeout 5; 
 expect -nocase -exact \"password: \"; 
 send -- \"$ESXPASSWD\r\"; 
