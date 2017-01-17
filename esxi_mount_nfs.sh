@@ -6,24 +6,18 @@ STORAGENAME=$STORAGENAME
 STARTSEQ=$STARTSEQ
 ENDSEQ=$ENDSEQ
 function MOUNT () {
-
+if $user_req="MOUNT"
 local ESXSCRIPT='esxcli storage nfs add -H $STORAGENAME -s /$MOUNTNAME -v $DS_NAME'
 echo $ESXSCRIPT
-}
-
-function UMOUNT () {
-
+else 
 local ESXSCRIPT='esxcli storage nfs remove --volume-name=$DS_NAME'
 echo $ESXSCRIPT
 }
 
-$mnt=$(MOUNT)
-$umnt=$(UMOUNT)
-
 $SEQUENCE=`seq $STARTSEQ $ENDSEQ `
 for i in $SEQUENCE;
 do
-expect -c "spawn ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null root@vmrack${i} $function; 
+expect -c "spawn ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null root@vmrack${i} $ESXSCRIPT; 
 set timeout 5; 
 expect -nocase -exact \"password: \"; 
 send -- \"$ESXPASSWD\r\"; 
