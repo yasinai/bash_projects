@@ -17,11 +17,6 @@ local ESXSCRIPT='esxcli storage nfs remove --volume-name=$DS_NAME'
 echo $ESXSCRIPT
 }
 
-#remove storage "esxcli storage nfs remove --volume-name=scratch"
-#add storage :  "esxcli storage nfs add -H fiona -s /scratch -v scratch"
-#ESXSCRIPT="date"
-
-
 $SEQUENCE=`seq $STARTSEQ $ENDSEQ `
 for i in $SEQUENCE;
 do
