@@ -5,14 +5,16 @@ DS_NAME=$DS_NAME
 STORAGENAME=$STORAGENAME
 STARTSEQ=$STARTSEQ
 ENDSEQ=$ENDSEQ
-function MOUNT {
+function MOUNT () {
 
-ESXSCRIPT="esxcli storage nfs add -H $STORAGENAME -s /$MOUNTNAME -v $DS_NAME"
+local ESXSCRIPT='esxcli storage nfs add -H $STORAGENAME -s /$MOUNTNAME -v $DS_NAME'
+echo $ESXSCRIPT
 }
 
-function UMOUNT {
+function UMOUNT () {
 
-ESXSCRIPT="esxcli storage nfs remove --volume-name=$DS_NAME"
+local ESXSCRIPT='esxcli storage nfs remove --volume-name=$DS_NAME'
+echo $ESXSCRIPT
 }
 
 #remove storage "esxcli storage nfs remove --volume-name=scratch"
