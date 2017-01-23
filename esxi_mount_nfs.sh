@@ -14,17 +14,17 @@ fi
 function MOUNT () {
 if [[ "$user_req" == "MOUNT" ]]
 then
-	local ESXSCRIPT='esxcli storage nfs add -H $STORAGENAME -s /$MOUNTNAME -v $DS_NAME'
+	local ESXSCRIPT="esxcli storage nfs add -H $STORAGENAME -s /$MOUNTNAME -v $DS_NAME"
 	echo $ESXSCRIPT
 else 
-	local ESXSCRIPT='esxcli storage nfs remove --volume-name=$DS_NAME'
+	local ESXSCRIPT="esxcli storage nfs remove --volume-name=$DS_NAME"
 	echo $ESXSCRIPT
 fi
 }
 ESXSCRIPT=$(MOUNT)
 echo $ESXSCRIPT
 if [[ "$ENDSEQ" == "$STARTSEQ" || "$ENDSEQ" == "" ]];then
-       echo ${SEQUENCE:-$STARTSEQ};
+       SEQUENCE="$STARTSEQ"
 else
         SEQUENCE=`seq $STARTSEQ $ENDSEQ `;
 fi
