@@ -1,14 +1,13 @@
 #!/bin/bash
 ESXPASSWD=""
-MOUNTNAME=$MOUNTNAME
-DS_NAME=$MOUNTNAME
+#MOUNTNAME=$mountpoint
 STORAGENAME=$STORAGENAME
 STARTSEQ=$STARTSEQ
 ENDSEQ=$ENDSEQ
 user_req=$user_req
 if [[ "$STARTSEQ" -gt "$ENDSEQ" ]]; then
 	echo "Error Sequence" 
-	exit 0
+	exit 1
 fi
 
 function MOUNT () {
@@ -21,6 +20,11 @@ else
 	echo $ESXSCRIPT
 fi
 }
+mountpoint=`echo $mountpoint | tr ',' ' '`
+for MOUNTNAME in $mountpoint; do 
+
+DS_NAME=$MOUNTNAME
+
 ESXSCRIPT=$(MOUNT)
 echo $ESXSCRIPT
 if [[ "$ENDSEQ" == "$STARTSEQ" || "$ENDSEQ" == "" ]];then
@@ -36,4 +40,5 @@ fi
 	send -- \"$ESXPASSWD\r\"; 
 	expect eof" ;
 	done
+done
 ##"set timeout -1;" with no timeout at all. 
